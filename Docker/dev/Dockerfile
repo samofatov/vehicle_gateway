@@ -2,7 +2,7 @@ FROM ubuntu:22.04
 
 ENV DEBIAN_FRONTEND=noninteractive
 RUN apt-get update \
- && apt-get install -y -qq \
+    && apt-get install -y -qq \
     python3-pip \
     python3-kconfiglib \
     python3-jinja2 \
@@ -47,6 +47,8 @@ RUN rosdep init && \
   rosdep update && \
   cd /home/vehicle_gateway && \
   rosdep install --from-paths ./ -i -y --rosdistro humble --ignore-src --skip-keys="gz-transport12 gz-common5 gz-math7 gz-msgs9 gz-gui7 gz-cmake3 gz-sim7 zenohc gz-transport7 gz-plugin2"
+# Install Rust
+RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
 
 RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y && \
     echo 'export PATH="$HOME/.cargo/bin:$PATH"' >> $HOME/.profile
