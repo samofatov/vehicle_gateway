@@ -53,10 +53,10 @@ private:
     rc_packet pkt;
     pkt.timestamp = msg->header.stamp.sec + msg->header.stamp.nanosec / (1000 * 1000 * 1000);
 
-    pkt.channels[0] = ((-1 * msg->axes[2] + 1) / 2 * 1000) + 1000;   // roll
-    pkt.channels[1] = ((msg->axes[3] + 1) / 2 * 1000) + 1000;   // pitch
-    pkt.channels[2] = ((msg->axes[1] + 1) / 2 * 1000) + 1000;   // yaw
-    pkt.channels[3] = ((msg->axes[0] + 1) / 2 * 1000) + 1000;   // throtlle
+    pkt.channels[0] = ((-1 * msg->axes[0] + 1) / 2 * 1000) + 1000;   // roll
+    pkt.channels[1] = ((msg->axes[1] + 1) / 2 * 1000) + 1000;   // pitch
+    pkt.channels[2] = ((-1 * msg->axes[2] + 1) / 2 * 1000) + 1000;   // throtlle
+    pkt.channels[3] = ((msg->axes[3] + 1) / 2 * 1000) + 1000;   // yaw
     pkt.channels[4] = (msg->buttons[0] * 1000) + 1000;   // aux1;
     pkt.channels[5] = (msg->buttons[1] * 1000) + 1000;   // aux2;
     pkt.channels[6] = (msg->buttons[2] * 1000) + 1000;   // aux3;
